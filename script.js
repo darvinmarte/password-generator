@@ -20,6 +20,35 @@
 
 
 // Assignment code here
+// created character banks for lowercaseChars, uppercaseChars, numbersChars, symbolsChar
+var lowercaseChars = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",];
+var uppercaseChars = ["A","B","C","D","E","F","G","H","I","J", "K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",];
+var numbersChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var symbolsChar = ["!", "@", "#", "$", "%", "&", "*", "(", ")"];
+
+function generatePasswordOptions(){
+  var length = prompt("Please enter length between 8 and 128 characters.")
+  console.log(length)
+  var lowerCase = confirm("Do you want to include lowercase characters?")
+  console.log(lowerCase)
+  var upperCase = confirm("Do you want to include uppercase characters?")
+  console.log(upperCase)
+  var numeric = confirm("Would you like to include numbers?")
+  console.log(numeric)
+  var specialCharacters = confirm("Would you like to use special characters?")
+  console.log(specialCharacters)
+  if (lowerCase === false && 
+    upperCase === false &&
+    numeric === false &&
+    specialCharacters === false) {
+      prompt("User should select atleast one character type!")
+      return null;
+  }
+}
+
+function generatePassword() {
+generatePasswordOptions()
+}
 
 
 // Get references to the #generate element
