@@ -78,6 +78,9 @@ function generatePasswordOptions() {
   var length = prompt("Please enter length between 8 and 128 characters.");
   console.log(length);
   // add alert that says you need 8 to 128 characters
+  if (length < 8 && length > 128){ 
+    alert("Length must be between 8 and 128 characters!")
+  }
   var lowerCase = confirm("Do you want to include lowercase characters?");
   console.log(lowerCase);
   var upperCase = confirm("Do you want to include uppercase characters?");
@@ -117,7 +120,33 @@ function generatePassword() {
  var options = generatePasswordOptions();
  var result = [];
  var randomCharacters = [];
- var atlCharacters = [];
+ var altCharacters = [];
+ if(options.lowerCase1){
+  randomCharacters.push(getRandom(lowercaseChars));
+  altCharacters = altCharacters.concat(lowercaseChars);
+ }
+ if (options.upperCase1){
+  randomCharacters.push(getRandom(uppercaseChars));
+  altCharacters = altCharacters.concat(uppercaseChars);
+  console.log(randomCharacters)
+  console.log(altCharacters)
+ }
+ if (options.numeric1){
+  randomCharacters.push(getRandom(numbersChars));
+  altCharacters = altCharacters.concat(numbersChars);
+ }
+ if(options.specialCharacters1){
+  randomCharacters.push(getRandom(symbolsChar));
+  altCharacters = altCharacters.concat(symbolsChar);
+ }
+ for (var i = 0; i < options.length1; i++){
+  var altCharacter = getRandom(altCharacters);
+  result.push(altCharacter);
+ }
+ for (var i = 0; i < randomCharacters.length1; i++){
+  result [i] = randomCharacters[i]
+ }
+ return result.join("");
 }
 
 // Get references to the #generate element
