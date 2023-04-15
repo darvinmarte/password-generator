@@ -78,16 +78,21 @@ function generatePasswordOptions() {
   var length = prompt("Please enter length between 8 and 128 characters.");
   console.log(length);
   // add alert that says you need 8 to 128 characters
-  if (length < 8 && length > 128){ 
-    alert("Length must be between 8 and 128 characters!")
+  if (length < 8 || length > 128) {
+    alert("Length must be between 8 and 128 characters!");
+    return null;
   }
   var lowerCase = confirm("Do you want to include lowercase characters?");
+  // asks user ok or cancel
   console.log(lowerCase);
   var upperCase = confirm("Do you want to include uppercase characters?");
+  // asks user ok or cancel
   console.log(upperCase);
   var numeric = confirm("Would you like to include numbers?");
+  // asks user ok or cancel
   console.log(numeric);
   var specialCharacters = confirm("Would you like to use special characters?");
+  // asks user ok or cancel
   console.log(specialCharacters);
   if (
     lowerCase === false &&
@@ -97,56 +102,57 @@ function generatePasswordOptions() {
   ) {
     alert("User should select atleast one character type!");
     return null;
+    // alerts user they must choose atleast one character type
   }
   var passwordOptions = {
     length1: length,
     lowerCase1: lowerCase,
     upperCase1: upperCase,
     numeric1: numeric,
-    specialCharacters1: specialCharacters
-  }
+    specialCharacters1: specialCharacters,
+  };
   return passwordOptions;
 }
 
+//randomizes password characters
 function getRandom(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   var randomElement = arr[randomIndex];
   return randomElement;
 }
 
-
-
 function generatePassword() {
- var options = generatePasswordOptions();
- var result = [];
- var randomCharacters = [];
- var altCharacters = [];
- if(options.lowerCase1){
-  randomCharacters.push(getRandom(lowercaseChars));
-  altCharacters = altCharacters.concat(lowercaseChars);
- }
- if (options.upperCase1){
-  randomCharacters.push(getRandom(uppercaseChars));
-  altCharacters = altCharacters.concat(uppercaseChars);
-  console.log(randomCharacters)
-  console.log(altCharacters)
- }
- if (options.numeric1){
-  randomCharacters.push(getRandom(numbersChars));
-  altCharacters = altCharacters.concat(numbersChars);
- }
- if(options.specialCharacters1){
-  randomCharacters.push(getRandom(symbolsChar));
-  altCharacters = altCharacters.concat(symbolsChar);
- }
- for (var i = 0; i < options.length1; i++){
-  var altCharacter = getRandom(altCharacters);
-  result.push(altCharacter);
- }
- for (var i = 0; i < randomCharacters.length1; i++){
-  result [i] = randomCharacters[i]
- }
- return result.join("");
+  var options = generatePasswordOptions();
+  var result = [];
+  var randomCharacters = [];
+  var altCharacters = [];
+  if (options.lowerCase1) {
+    randomCharacters.push(getRandom(lowercaseChars));
+    altCharacters = altCharacters.concat(lowercaseChars);
+  }
+  if (options.upperCase1) {
+    randomCharacters.push(getRandom(uppercaseChars));
+    altCharacters = altCharacters.concat(uppercaseChars);
+    console.log(randomCharacters);
+    console.log(altCharacters);
+  }
+  if (options.numeric1) {
+    randomCharacters.push(getRandom(numbersChars));
+    altCharacters = altCharacters.concat(numbersChars);
+  }
+  if (options.specialCharacters1) {
+    randomCharacters.push(getRandom(symbolsChar));
+    altCharacters = altCharacters.concat(symbolsChar);
+  }
+  for (var i = 0; i < options.length1; i++) {
+    var altCharacter = getRandom(altCharacters);
+    result.push(altCharacter);
+  }
+  for (var i = 0; i < randomCharacters.length1; i++) {
+    result[i] = randomCharacters[i];
+  }
+  //shows password in inout box
+  return result.join("");
 }
 
 // Get references to the #generate element
